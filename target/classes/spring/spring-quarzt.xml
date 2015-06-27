@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+   
+    <!--定义job 写自己的业务逻辑  -->
+    <bean  id = "autojob"  class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.ec.autojob.app.AutoJobEntry"/>
+	    <property name="name" value="autojob"></property>
+	    <property name="jobDataAsMap">
+	        <map>
+	            <entry key="timeout" value="5"/>
+	        </map>
+	    </property>
+     </bean>
+     
+     <!--定义触发器  -->
+     
+     <bean id="CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	    <property name="jobDetail" ref="autojob"></property>  
+	    <property name="cronExpression" value="0/1 * * * * ?"></property>  
+    </bean>  
+    
+    
+    <!--定义调度工厂  -->
+     
+      <bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+		    <property name="triggers">  
+		        <list>  
+		            <ref bean="CronTriggerBean"/>  
+		        </list>  
+		    </property>  
+     </bean>    
+
+</beans>

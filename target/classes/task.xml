@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tasks>
+    <!-- 测试接口调用 -->
+	<task id="testJob" class="com.cntaiping.tpi.customer.action.autotask.TestJob"></task>
+	
+	
+	<!-- 测试接口调用 -->
+	<task id="personalMsgJob" class="com.cntaiping.tpi.customer.action.autotask.PersonalMsgJob"></task>
+	
+	<!-- 测试接口调用 -->
+	<task id="pushMsgJob" class="com.cntaiping.tpi.customer.action.autotask.PushMsgJob"></task>
+</tasks>
